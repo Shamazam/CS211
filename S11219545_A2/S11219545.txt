@@ -1,0 +1,52 @@
+start: 
+	read 		; read n into acc
+	store n 	; store acc value in n
+	push 		; push acc value into stack
+	subtract num2 	; acc = acc(n) - 2
+	jmpz equ2 	; if acc  < 2 ,jump to equ1 
+	jmpn equ1 	; if acc  = 2 , jump to equ2
+	call equ3 	; else call to equ3
+
+main: 
+	pop 		; pop(retrieve) value from stack memory into acc
+	write 		; write from acc to console
+	stop 		; terminate program
+
+
+
+equ2: 
+	pop 		; pop(retrieve) value from stack memory into acc
+	multiply num4 	; acc = acc(n) * 4
+	store p 	; store value in p(4n) from acc
+	load n 		; load value from n into acc
+	subtract p 	; acc = acc(n) - 4n
+	push 		; push(store) acc value into stack memory
+	return main 	; return to main
+equ1: 
+	pop 		; pop(retrieve) value from stack memory into acc
+	multiply n 	; acc = acc(n) * n
+	push 		; push(store) acc value into stack memory
+	return main 	; return to main
+
+equ3: 
+	pop 		; pop(retrieve) value from stack memory into acc
+	multiply num6 	; acc = acc * 6
+	add num5	; acc = acc + 5
+	store m 	; store value in m
+	load n 		; load value from n into acc
+	multiply n 	; acc = acc(n) * n
+	add m 		; acc = acc(n^2) + (6n+5)
+	push 		; push(store) acc value into stack memory
+	return main 	; return to main
+
+
+
+n: 	.data 2 0 	; storage for n
+m: 	.data 2 0 	; storage for 6n+5
+p: 	.data 2 0 	; storage for 4n
+num2: 	.data 2 2	; storage for const 2
+num4: 	.data 2 4 	; storage for const 4
+num5: 	.data 2 5 	; storage for const 5
+num6: 	.data 2 6 	; storage for const 6
+	
+	
